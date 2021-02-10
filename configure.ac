@@ -76,11 +76,6 @@ AC_CHECK_DECL(XSERVER_LIBPCIACCESS,
 	      [#include "xorg-server.h"])
 CFLAGS="$save_CFLAGS"
 
-save_CFLAGS="$CFLAGS"
-CFLAGS="$XORG_CFLAGS"
-AC_CHECK_HEADER(qxl_drm.h,[QXL_DRM=yes],[QXL_DRM=no],[#include <stdint.h>])
-CFLAGS="$save_CFLAGS"
-
 AC_ARG_ENABLE(kms,
 	      AS_HELP_STRING([--disable-kms],
 	                     [Disable KMS support [[default=enabled]]]),
@@ -88,10 +83,9 @@ AC_ARG_ENABLE(kms,
 	     [DRM_MODE=yes])
 
 # Checks for libraries.
-if test "x$QXL_DRM" = xyes && test "x$DRM_MODE" = xyes; then
+if test "x$DRM_MODE" = xyes; then
 	# require support for kms cursor hotspot
 	PKG_CHECK_MODULES(DRM, [libdrm >= 2.4.46])
-
 else
 	DRM_MODE=no
 fi
