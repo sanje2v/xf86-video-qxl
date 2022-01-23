@@ -82,7 +82,7 @@ static QXLDevMemSlot slot = {
 .qxl_ram_size = ~0,
 };
 
-// TODO - reall dprint, this is just to get it compiling
+// TODO - real dprint, this is just to get it compiling
 #define dprint(qxl, lvl, fmt, ...) printf(fmt, __VA_ARGS__)
 
 static void interface_attach_worker(QXLInstance *sin, QXLWorker *qxl_worker)
